@@ -6,3 +6,6 @@ __pycache__/
 .vscode/
 .idea/
 *.tmp
+
+# Generated Nsight Systems SQLite exports
+reports/linux_nsys/*.sqlite
