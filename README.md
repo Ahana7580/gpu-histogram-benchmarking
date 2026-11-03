@@ -8,6 +8,29 @@ The benchmark processes **32 million input values** and constructs a histogram w
 
 The project includes CUDA implementations, automated benchmark scripts, CSV datasets, performance visualizations, Nsight profiling reports, and a cross-platform analysis report.
 
+## CUDA Histogram Strategies
+
+This project implements and benchmarks six GPU histogram approaches to study how memory access patterns, atomic contention, and thread cooperation affect performance.
+
+| Strategy | Approach |
+|---|---|
+| 1. Global Memory Baseline | Updates histogram bins directly in global memory. |
+| 2. Shared-Memory Privatization | Builds partial histograms in shared memory before combining results. |
+| 3. Sort-Reduce | Groups equal values through sorting and reduces them into histogram counts. |
+| 4. Warp Register Aggregation | Combines updates within a warp to reduce redundant atomic operations. |
+| 5. Warp-Shared Hybrid | Combines warp-level aggregation with shared-memory histogram updates. |
+| 6. Per-Warp Shared Memory | Maintains separate shared-memory histograms for individual warps before merging them. |
+
+### What the Experiments Compare
+
+- **Input distributions:** Uniform and skewed.
+- **Threads per block:** 128, 256, and 512.
+- **Platforms:** Windows and Linux/WSL2.
+- **Measurements:** Kernel execution time and end-to-end execution time.
+
+The goal is to understand how each strategy responds to different input distributions and block sizes, identify performance trade-offs, and compare results across platforms. The benchmark results and profiling reports provide the basis for the analysis.
+
+
 ## Benchmark Results at a Glance
 
 The experiments evaluate six strategies, two input distributions, and three CUDA block sizes: 128, 256, and 512 threads.
