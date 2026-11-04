@@ -9,3 +9,9 @@ __pycache__/
 
 # Generated Nsight Systems SQLite exports
 reports/linux_nsys/*.sqlite
+
+# Local build output
+build/
+
+# Generated Nsight Systems SQLite exports
+*.sqlite
